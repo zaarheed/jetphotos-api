@@ -32,9 +32,29 @@ async function _getPhotoIdByQuery(query) {
 
 	const html = await axios.get(url);
 
+	if (!html) {
+		return null;
+	}
+
 	let $ = cheerio.load(html.data);
 
-	let image = $('.result__photoLink')[0].children[1].attribs.src;
+	let imageContainers = $('.result__photoLink');
+
+	if (!imageContainers) {
+		return null;
+	}
+
+	let imageContainer = imageContainers[0];
+
+	if (!imageContainer) {
+		return null;
+	}
+
+	let image = imageContainer.children[1].attribs.src;
+
+	if (!image) {
+		return null;
+	}
 
 	let split = image.substr(2).split('/');
 
