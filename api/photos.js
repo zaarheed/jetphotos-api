@@ -64,10 +64,4 @@ async function _getPhotoIdByQuery(query) {
 }
 
 
-function _getTime() {
-	var date = new Date();
-	return date.toUTCString();
-}
-
-
 module.exports = router;
